@@ -44,20 +44,20 @@ The stack technology is the following:
 
 #### Tools and third parties
 **PC**
-Install Git --> Version: 2.20.1.windows.1
+- Install Git --> Version: 2.20.1.windows.1
 *Configure to add environment variable for windows
-Install Gradle --> Version 5.5.1
+- Install Gradle --> Version 5.5.1
 *Configure to add environment variable for windows
-Install eclipse --> Version: 2019-06 (4.12.0)
+- Install eclipse --> Version: 2019-06 (4.12.0)
 *Configure --> Add this line to the .project file of the root folder: <nature>org.eclipse.jdt.core.javanature</nature>
-Install Docker Desktop --> Version 2.1.0.0 (Win Pro 10 needed)
+- Install Docker Desktop --> Version 2.1.0.0 (Win Pro 10 needed)
 *Configure --> Settings/General: Expose daemon on tcp://localhost:2375 without TLS
 *Configure --> Settings/Advanced: (increase if its necessary)
-Install "Docker Tooling" from Eclipse marketplace (restart is mandatory)
-*Configure --> In D.T. view: write a “Connection name” and use custom TCP connection settings http://localhost:2375 (docker must expose daemon)
-Install "Spring Tool Suite 4" from Eclipse marketplace (restart is mandatory)
-Install Cygwin for windows (for script shell)
-Install Postman
+- Install "Docker Tooling" from Eclipse marketplace (restart is mandatory)
+- *Configure --> In D.T. view: write a “Connection name” and use custom TCP connection settings http://localhost:2375 (docker must expose daemon)
+- Install "Spring Tool Suite 4" from Eclipse marketplace (restart is mandatory)
+- Install Cygwin for windows (for script shell)
+- Install Postman
 
 **GMAIL**
 Create account (eacadidaschallenge@gmail.com/a******19)
@@ -73,14 +73,14 @@ Create account (eacAdidasChallenge/a********19) + email validation
 - Maven over the root folder: "mvn clean package -DskipTests=true"
 - Run over the root folder: "sh startMicroservices.sh"
 - Docker start for each container in this order:
-	docker start -a config-service
-	docker start -a eureka-service 
-	docker start -a auth-server 
-	docker start -a mysql-db 
-	docker start -a subscription-service 
-	docker start -a subscription-data-service 
-	docker start -a subscription-mail-service
-	docker start -a api-gateway
+	> docker start -a config-service
+	> docker start -a eureka-service 
+	> docker start -a auth-server 
+	> docker start -a mysql-db 
+	> docker start -a subscription-service 
+	> docker start -a subscription-data-service 
+	> docker start -a subscription-mail-service
+	> docker start -a api-gateway
 - Execute the login query with the postman collection
 - Copy the Bearer Authorization and add it to the subscription query
 - Exeute the subscription query (you will receive the position of the record and a mail in the defined mailbox)
