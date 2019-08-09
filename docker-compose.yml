@@ -1,0 +1,79 @@
+version: "3"
+services:
+
+  mysql-db:
+    container_name: mysql-db
+    image: mysql-db
+    ports:
+        - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: supersecret
+      MYSQL_DATABASE: challenge
+
+  # Config-service
+  config-service:
+    container_name: config-service
+    image: adiego/config-service:1.0.0
+    expose:
+      - "8888"
+
+  # Eureka-service
+  eureka-service:
+    container_name: eureka-service
+    image: adiego/eureka-service:1.0.0
+    environment:
+      SPRING_CONFIG_URI: "http://config-service:8888"
+    ports:
+      - "8761:8761"
+
+  # auth-server
+  auth-server:
+    container_name: auth-server
+    image: adiego/auth-server:1.0.0
+    environment:
+      SPRING_CONFIG_URI: "http://config-service:8888"
+    expose:
+      - "8081"
+
+  # api-gateway. we need to expose this to outside
+  api-gateway:
+    container_name: api-gateway
+    image: adiego/api-gateway:1.0.0
+    environment:
+      SPRING_CONFIG_URI: "http://config-service:8888"
+      AUTH_SERVER: "auth-server"
+      SUBSCRIPTION_SERVICE: "subscription-service"
+    ports:
+      - "8080:8080"
+
+  # subscription-data-service
+  subscription-data-service:
+    container_name: subscription-data-service
+    image: adiego/subscription-data-service:1.0.0
+    environment:
+      SPRING_CONFIG_URI: "http://config-service:8888"
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eureka-service:8761/eureka"
+      MYSQL_HOST: "mysql-db"
+    expose:
+      - "9998"
+      
+  # subscription-mail-service
+  subscription-mail-service:
+    container_name: subscription-mail-service
+    image: adiego/subscription-mail-service:1.0.0
+    environment:
+      SPRING_CONFIG_URI: "http://config-service:8888"
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eureka-service:8761/eureka"
+    expose:
+      - "9995"
+
+  # subscription-service
+  subscription-service:
+    container_name: subscription-service
+    image: adiego/subscription-service:1.0.0
+    environment:
+      SPRING_CONFIG_URI: "http://config-service:8888"
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eureka-service:8761/eureka"
+    expose:
+      - "9192"

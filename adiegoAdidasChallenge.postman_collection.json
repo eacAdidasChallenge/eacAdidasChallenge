@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "289321f7-c0be-4cb2-a99c-5149f44aa230",
+		"name": "adiegoAdidasChallenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "challenge :: adiego :: loginGatewayJwt",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\":\"adidas\",\"password\":\"adidas\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				},
+				"description": "challenge :: api-gateway :: loginWithBody"
+			},
+			"response": []
+		},
+		{
+			"name": "challenge :: adiego :: subscription",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGlkYXMiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNTY1MzI3NDkwLCJleHAiOjE1NjU0MTM4OTB9.Uqa1uT3pbIyIbIdFFJejP9e8sG7RScicLVfN9nPoB2k",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\": \"enrique.adiego@darecode.com\", \"firstName\": \"Paco\", \"gender\": \"Female\", \"dateOfBith\": \"2019-08-08\", \"consent\": \"false\", \"idNewsletter\": \"999\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/subscription/new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"subscription",
+						"new"
+					]
+				},
+				"description": "challenge :: adiego  :: subscription"
+			},
+			"response": []
+		}
+	]
+}

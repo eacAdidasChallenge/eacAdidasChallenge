@@ -1,0 +1,19 @@
+server:
+  port: 8080
+
+zuul:
+  routes:
+    auth-center:
+      path: /login/**
+      url: http://${AUTH_SERVER:localhost}:8081/
+      sensitiveHeaders: Cookie,Set-Cookie
+      stripPrefix: false
+    subscription-service:
+      path: /subscription/**
+      url: http://${SUBSCRIPTION_SERVICE:localhost}:9192/
+
+adidas.security.jwt.secret: impossibleisnothing
+
+eureka:
+  instance:
+    preferIpAddress: true
