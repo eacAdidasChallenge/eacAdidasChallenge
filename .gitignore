@@ -1,1 +1,6 @@
+### BASIC ###
 /.gradle/
+/.settings/
+/build/
+
+### OTHER ###
